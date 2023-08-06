@@ -1,18 +1,13 @@
 import { test, expect } from '@playwright/test';
+import { HomePage } from '../pages/homePage'
 
-test('has title', async ({ page }) => {
-  await page.goto('https://playwright.dev/');
 
-  // Expect a title "to contain" a substring.
-  await expect(page).toHaveTitle(/Playwright/);
+test('Buy a product', async ({ page }) => {
+  const homePage = new HomePage(page)
+
+  await homePage.goto()
+  await homePage.productItem.filter({ hasText : 'Radiant Tee'}).click()
+
+  await expect(page).toHaveTitle(/Radiant Tee/);
 });
 
-test('get started link', async ({ page }) => {
-  await page.goto('https://playwright.dev/');
-
-  // Click the get started link.
-  await page.getByRole('link', { name: 'Get started' }).click();
-
-  // Expects the URL to contain intro.
-  await expect(page).toHaveURL(/.*intro/);
-});
