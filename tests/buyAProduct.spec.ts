@@ -1,6 +1,7 @@
 import { test, expect } from '@playwright/test';
 import { HomePage } from '../pages/homePage'
 import { ProductPage } from '../pages/productPage'
+import { ShippingPage } from '../pages/shippingPage'
 
 
 test('Buy a product', async ({ page }) => {
@@ -24,6 +25,7 @@ test('Buy a product', async ({ page }) => {
 
   const shippingPage = new ShippingPage(page)
 
-  await shippingPage.waitForURL('**/checkout/#shipping')
+  await shippingPage.waitForPageToLoad()
+
 });
 
