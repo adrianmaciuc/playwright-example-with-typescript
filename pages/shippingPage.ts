@@ -17,7 +17,7 @@ export class ShippingPage {
 
     async waitForPageToLoad() {
         await this.page.waitForURL('**/checkout/#shipping')
-        await expect(this.SHIP_METHOD_5).toBeVisible()
+        await expect(this.SHIP_METHOD_5.first()).toBeVisible()
     }
 
    
