@@ -6,8 +6,10 @@
         "strict": true,
         "outDir": "./dist",
         "esModuleInterop": true,
-        "removeComments": true,
         "noEmitOnError": true,
         "skipLibCheck": true,
+        "noImplicitReturns": true,
+        "noUnusedLocals": true,
+        "noUnusedParameters": true,
     }
 }
