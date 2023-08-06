@@ -14,5 +14,4 @@ export class HomePage {
     async goto() {
         await this.page.goto('https://magento.softwaretestingboard.com/');
     }
-
 }
