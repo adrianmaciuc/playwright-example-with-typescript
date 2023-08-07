@@ -12,6 +12,9 @@ export class HomePage {
 
     productItem = () => this.page.locator('.product-item-info')
 
+    // alternative locators
+    // productItem = () => this.page.getByRole('link', { name: 'Radiant Tee' }).first()
+
     async goto() {
         await this.page.goto('https://magento.softwaretestingboard.com/');
     }

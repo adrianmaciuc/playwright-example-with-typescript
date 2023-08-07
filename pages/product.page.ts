@@ -17,6 +17,11 @@ export class ProductPage {
     COLOR_ORANGE = () => this.page.locator('[id="option-label-color-93-item-56"]')
     COLOR_BLUE = () => this.page.locator('#option-label-color-93-item-50')
 
+    // Alternative locators
+    // SIZE_S = () => this.page.getByLabel('S', { exact: true })
+    // COLOR_ORANGE = () => this.page.getByLabel('Orange')
+    // ADD_TO_CART_BTN = () => this.page.getByRole('button', { name: 'Add to Cart' })
+
     async waitForPageToLoad() {
         await expect(this.SIZE_S()).toBeVisible()
     }
