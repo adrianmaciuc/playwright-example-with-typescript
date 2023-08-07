@@ -1,7 +1,5 @@
 import { test, expect } from '@playwright/test'
-import { HomePage } from '../pages/home.page'
-import { ProductPage } from '../pages/product.page'
-import { ShippingPage } from '../pages/shipping.page'
+import { HomePage, ProductPage, ShippingPage } from '../pages'
 
 
 test('Buy a product', async ({ page }) => {
