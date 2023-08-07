@@ -1,7 +1,7 @@
-import { test, expect } from '@playwright/test';
-import { HomePage } from '../pages/homePage'
-import { ProductPage } from '../pages/productPage'
-import { ShippingPage } from '../pages/shippingPage'
+import { test, expect } from '@playwright/test'
+import { HomePage } from '../pages/home.page'
+import { ProductPage } from '../pages/product.page'
+import { ShippingPage } from '../pages/shipping.page'
 
 
 test('Buy a product', async ({ page }) => {
