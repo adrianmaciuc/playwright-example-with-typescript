@@ -14,15 +14,15 @@ export class ProductPage {
 
     constructor(page: Page) {
         this.page = page
-        this.SIZE_S = page.locator('css=#option-label-size-143-item-167')
-        this.SIZE_M = page.locator('css=#option-label-size-143-item-168')
-        this.ADD_TO_CART_BTN = page.locator('css=#product-addtocart-button')
-        this.ADD_TO_CART_SUCCESS_MSG = page.locator('css=[data-ui-id="message-success"]')
-        this.MINI_CART_COUNTER = page.locator('css=[data-block="minicart"] .counter .counter-number')
-        this.MINI_CART = page.locator('css=[data-block="minicart"]')
-        this.CHECKOUT_BTN = page.locator('css=#top-cart-btn-checkout')
-        this.COLOR_ORANGE = page.locator('css=[id="option-label-color-93-item-56"]')
-        this.COLOR_BLUE = page.locator('css=#option-label-color-93-item-50')
+        this.SIZE_S = page.locator('#option-label-size-143-item-167')
+        this.SIZE_M = page.locator('#option-label-size-143-item-168')
+        this.ADD_TO_CART_BTN = page.locator('#product-addtocart-button')
+        this.ADD_TO_CART_SUCCESS_MSG = page.locator('[data-ui-id="message-success"]')
+        this.MINI_CART_COUNTER = page.locator('[data-block="minicart"] .counter .counter-number')
+        this.MINI_CART = page.locator('[data-block="minicart"]')
+        this.CHECKOUT_BTN = page.locator('#top-cart-btn-checkout')
+        this.COLOR_ORANGE = page.locator('[id="option-label-color-93-item-56"]')
+        this.COLOR_BLUE = page.locator('#option-label-color-93-item-50')
     }
 
     async waitForPageToLoad() {

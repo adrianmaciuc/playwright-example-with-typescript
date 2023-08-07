@@ -8,7 +8,7 @@ export class HomePage {
 
     constructor(page: Page) {
         this.page = page
-        this.productItem = page.locator('css=.product-item-info')
+        this.productItem = page.locator('.product-item-info')
     }
 
     async goto() {
