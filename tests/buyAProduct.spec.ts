@@ -9,8 +9,7 @@ test('Buy a product', async ({ page }) => {
 
   await homePage.goto()
 
-  // open nth product from home page
-  await homePage.productItem.nth(0).click()
+  await homePage.productItem().nth(0).click()
 
   const productPage = new ProductPage(page)
 
@@ -18,8 +17,8 @@ test('Buy a product', async ({ page }) => {
   await productPage.chooseSize('s')
   await productPage.chooseColor('orange')
   
-  await productPage.ADD_TO_CART_BTN.click()
-  await expect(productPage.ADD_TO_CART_SUCCESS_MSG).toBeVisible()
+  await productPage.ADD_TO_CART_BTN().click()
+  await expect(productPage.ADD_TO_CART_SUCCESS_MSG()).toBeVisible()
 
   await productPage.proceedToCheckout()
 
