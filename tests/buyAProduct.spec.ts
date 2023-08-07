@@ -1,11 +1,7 @@
-import { test, expect } from '@playwright/test'
-import { HomePage, ProductPage, ShippingPage } from '../pages'
+import { test, expect } from '../fixtures/basePage'
 
 
-test('Buy a product', async ({ page }) => {
-  const homePage = new HomePage(page)
-  const productPage = new ProductPage(page)
-  const shippingPage = new ShippingPage(page)
+test('Buy a product', async ({ homePage, shippingPage, productPage }) => {
 
   await homePage.goto()
   await homePage.productItem().nth(0).click()
