@@ -60,7 +60,7 @@ jobs:
       uses: actions/upload-artifact@v3
       with:
         name: html-report--attempt-${{ github.run_attempt }}
-        path: 1/playwright-report
+        path: playwright-report
         retention-days: 90
 
     - name: Deploy Report to Github Pages
@@ -69,4 +69,4 @@ jobs:
       with:
         PERSONAL_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         PUBLISH_BRANCH: gh-pages
-        PUBLISH_DIR: 1/playwright-report
+        PUBLISH_DIR: playwright-report
