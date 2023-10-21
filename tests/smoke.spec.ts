@@ -8,16 +8,16 @@ test('Buy a product | @e2e', async ({ homePage }) => {
 
 });
 
-test('Extra test just for Report 3 | @e2e', async ({ request }) => {
+test('Extra test TO FAIL just for Report 3 | @e2e', async ({ request }) => {
 
   const response = await request.get('https://magento.softwaretestingboard.com/')
-  expect(response.status).toBe(200)
+  expect(response.status()).toEqual(201)
 
 });
 
-test('Extra test just for Report 4 | @e2e', async ({ request }) => {
+test('Extra test TO FAIL just for Report 4 | @e2e', async ({ request }) => {
 
   const response = await request.get('https://magento.softwaretestingboard.com/')
-  expect(response.ok).toBeTruthy()
+  expect(response.ok).toBeFalsy()
 
 });
