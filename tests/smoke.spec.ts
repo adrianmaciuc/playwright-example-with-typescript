@@ -15,9 +15,9 @@ test('Extra test TO FAIL just for Report 3 | @e2e', async ({ request }) => {
 
 });
 
-test('Extra test TO FAIL just for Report 4 | @e2e', async ({ request }) => {
+test('Extra test just for Report 4 | @e2e', async ({ request }) => {
 
   const response = await request.get('https://magento.softwaretestingboard.com/')
-  expect(response.ok).toBeFalsy()
+  expect(response.ok).toBeTruthy()
 
 });
