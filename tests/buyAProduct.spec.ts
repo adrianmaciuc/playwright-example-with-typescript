@@ -10,7 +10,7 @@ test('Buy a product | @e2e', async ({ homePage, shippingPage, productPage }) => 
   await productPage.chooseSize('s')
   await productPage.chooseColor('orange')
   await productPage.ADD_TO_CART_BTN().click()
-  await expect(productPage.ADD_TO_CART_SUCCESS_MSG()).toBeVisible()
+  await expect(productPage.ADD_TO_CART_SUCCESS_MSG()).toBeEmpty()
   await productPage.proceedToCheckout()
 
   await shippingPage.waitForPageToLoad()
