@@ -37,6 +37,8 @@ jobs:
   # Merge reports after playwright-tests, even if some shards have failed
     if: always()
     needs: [playwright-tests]
+    permissions:
+      id-token: write
 
     runs-on: ubuntu-latest
     steps:
