@@ -5,6 +5,7 @@ on:
   pull_request:
     branches: [ main ]
 jobs:
+  
   playwright-tests:
     timeout-minutes: 15
     runs-on: ubuntu-latest
@@ -33,10 +34,15 @@ jobs:
         path: blob-report
         retention-days: 30
 
-  merge-reports-and-upload-artifacts:
+  merge-reports-and-upload:
+    permissions:
+      contents: read
+      pages: write
+      id-token: write
   # Merge reports after playwright-tests, even if some shards have failed
     if: always()
     needs: [playwright-tests]
+    
 
     runs-on: ubuntu-latest
     steps:
@@ -62,7 +68,8 @@ jobs:
         name: html-report--attempt-${{ github.run_attempt }}
         path: playwright-report
         retention-days: 90
-        
+      
+
     - name: Setup Pages
       uses: actions/configure-pages@v3
     - name: Upload artifact
