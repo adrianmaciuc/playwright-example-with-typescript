@@ -18,6 +18,6 @@ test('Extra testjust for Report 3 | @e2e', async ({ request }) => {
 test('Extra test just for Report 4 | @e2e', async ({ request }) => {
 
   const response = await request.get('https://magento.softwaretestingboard.com/')
-  expect(response.ok).toBeTruthy()
+  expect(response.ok).toBeFalsy()
 
 });

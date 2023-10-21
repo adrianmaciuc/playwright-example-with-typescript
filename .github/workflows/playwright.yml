@@ -71,9 +71,15 @@ jobs:
       with:
         path: './playwright-report'
 
+    - name: Set New URL
+      id: set-url
+      run: echo "::set-output name=new_url::https://$GITHUB_REPOSITORY/$GITHUB_RUN_NUMBER"
+
     - name: Deploy to GitHub Pages
       id: deployment
       uses: actions/deploy-pages@v2
+      env:
+        NEW_URL: ${{ steps.set-url.outputs.new_url }}
 
     - name: echo me this
       run: echo "${{ steps.deployment.outputs.page_url }}"
