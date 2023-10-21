@@ -1,5 +1,9 @@
 node_modules/
-/test-results/
-/playwright-report/
-/playwright/.cache/
-/pw-browsers/
+test-results/
+playwright-report/
+playwright/.cache/
+pw-browsers/
+allure-results/
+.vscode
+.pytest_cache
+allure-report/
