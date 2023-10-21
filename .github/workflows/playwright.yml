@@ -33,7 +33,7 @@ jobs:
         path: blob-report
         retention-days: 30
 
-  merge-reports:
+  merge-reports-and-upload-artifacts:
   # Merge reports after playwright-tests, even if some shards have failed
     if: always()
     needs: [playwright-tests]
@@ -60,7 +60,7 @@ jobs:
       uses: actions/upload-artifact@v3
       with:
         name: html-report--attempt-${{ github.run_attempt }}
-        path: playwright-report
+        path: playwright-report/1
         retention-days: 90
 
     - name: Deploy Report to Github Pages
@@ -70,4 +70,4 @@ jobs:
         PERSONAL_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         PUBLISH_BRANCH: gh-pages
         PUBLISH_DIR: playwright-report
-        PUBLISH_DIR_PREFIX: "prefix"
+        
