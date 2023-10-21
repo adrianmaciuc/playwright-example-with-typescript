@@ -73,7 +73,7 @@ jobs:
 
     - name: Set New URL
       id: set-url
-      run: echo "::set-output name=new_url::https://$GITHUB_REPOSITORY/$GITHUB_RUN_NUMBER"
+      run: echo "new_url=https://$GITHUB_REPOSITORY/$GITHUB_RUN_NUMBER" >> $GITHUB_OUTPUT
 
     - name: Deploy to GitHub Pages
       id: deployment
@@ -81,8 +81,17 @@ jobs:
       env:
         NEW_URL: ${{ steps.set-url.outputs.new_url }}
 
-    - name: echo me this
-      run: echo "${{ steps.deployment.outputs.page_url }}"
+    - name: Generate Report URL
+      run: echo "${{ steps.deployment.outputs.page_url }}" > url.txt
+
+    - name: Print out Report URL for Summary on workflow
+      uses: actions/upload-artifact@v2
+      with:
+        name: url
+        path: url.txt
+
+
+
 
 
         
