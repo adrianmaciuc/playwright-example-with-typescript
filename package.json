@@ -4,18 +4,11 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "allure:generate": "npx allure generate ./allure-results --clean",
-    "allure:open": "npx allure open ./allure-report",
-    "allure:serve": "npx allure serve",
-    "test": "npx playwright test",
-    "posttest": "npm run allure:generate"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "@playwright/test": "^1.36.2",
-    "allure-commandline": "^2.24.1",
-    "allure-playwright": "^2.9.2"
+    "@playwright/test": "^1.39.0"
   }
 }
