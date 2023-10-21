@@ -27,7 +27,7 @@ jobs:
         ref: gh-pages
         path: gh-pages
 
-    - name: Allure report action from marketplace
+    - name: Allure Report action from marketplace
       uses: simple-elf/allure-report-action@master
       if: always()
       id: allure-report
@@ -38,7 +38,7 @@ jobs:
         allure_history: allure-history
         keep_reports: 60
 
-    - name: Deploy report to Github Pages
+    - name: Deploy Report to Github Pages
       if: always()
       uses: peaceiris/actions-gh-pages@v3
       with:
