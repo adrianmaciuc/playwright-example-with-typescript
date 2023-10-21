@@ -21,7 +21,7 @@ import { test, expect } from '../fixtures/basePage'
 test('Extra test just for Report 1 | @e2e', async ({ homePage }) => {
 
   await homePage.goto()
-  await expect(homePage.productItem().nth(0).isVisible()).toBeTruthy()
+  await expect(homePage.productItem().nth(0).isVisible()).toBeFalsy()
 
 });
 
