@@ -76,7 +76,7 @@ jobs:
       uses: actions/deploy-pages@v2
 
     - name: Access the report at this URL
-      run: echo "[${{ steps.set-url.outputs.new_url }}](${{ steps.set-url.outputs.new_url }})"
+      run: echo "${{ steps.deployment.outputs.page_url }}"
 
 
 
