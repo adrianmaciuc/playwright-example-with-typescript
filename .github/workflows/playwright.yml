@@ -62,21 +62,27 @@ jobs:
     - name: Merge into HTML Report
       run: npx playwright merge-reports --reporter html ./all-blob-reports
 
+    # - name: Upload HTML report
+    #   uses: actions/upload-artifact@v3
+    #   with:
+    #     name: html-report--attempt-${{ github.run_attempt }}
+    #     path: playwright-report
+    #     retention-days: 90
+
     - name: Upload HTML report
       uses: actions/upload-artifact@v3
       with:
-        name: html-report--attempt-${{ github.run_attempt }}
+        name: github-pages
         path: playwright-report
         retention-days: 90
-      
 
     - name: Setup Pages
       uses: actions/configure-pages@v3
-    - name: Upload artifact
-      uses: actions/upload-pages-artifact@v2
-      with:
-         # Upload entire repository
-        path: '.'
+    # - name: Upload artifact
+    #   uses: actions/upload-pages-artifact@v2
+    #   with:
+    #      # Upload entire repository
+    #     path: '.'
     - name: Deploy to GitHub Pages
       id: deployment
       uses: actions/deploy-pages@v2
