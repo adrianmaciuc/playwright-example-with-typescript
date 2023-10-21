@@ -68,21 +68,22 @@ jobs:
     #     name: html-report--attempt-${{ github.run_attempt }}
     #     path: playwright-report
     #     retention-days: 90
-
-    - name: Upload HTML report
-      uses: actions/upload-artifact@v3
-      with:
-        name: github-pages
-        path: playwright-report
-        retention-days: 90
-
     - name: Setup Pages
       uses: actions/configure-pages@v3
-    # - name: Upload artifact
-    #   uses: actions/upload-pages-artifact@v2
+
+    # - name: Upload HTML report
+    #   uses: actions/upload-artifact@v3
     #   with:
-    #      # Upload entire repository
-    #     path: '.'
+    #     name: github-pages
+    #     path: playwright-report
+    #     retention-days: 90
+
+    - name: Upload artifact
+      uses: actions/upload-pages-artifact@v2
+      with:
+         # Upload entire repository
+        path: './playwright-report'
+        
     - name: Deploy to GitHub Pages
       id: deployment
       uses: actions/deploy-pages@v2
