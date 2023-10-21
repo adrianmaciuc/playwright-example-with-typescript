@@ -19,3 +19,14 @@ test('Buy a product | @e2e', async ({ homePage, shippingPage, productPage }) => 
 
 });
 
+test('Extra test just for Report 1 | @e2e', async ({ homePage }) => {
+
+  await expect(homePage.productItem().nth(0).isVisible())
+
+});
+
+test('Extra test just for Report 2 | @e2e', async ({ homePage }) => {
+
+  await expect(homePage.productItem().nth(0).isVisible())
+
+});
