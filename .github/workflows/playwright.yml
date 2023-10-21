@@ -39,6 +39,7 @@ jobs:
     needs: [playwright-tests]
     permissions:
       id-token: write
+      pages: write 
 
     runs-on: ubuntu-latest
     steps:
