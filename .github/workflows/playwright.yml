@@ -54,7 +54,7 @@ jobs:
       uses: actions/download-artifact@v3
       with:
         name: merged-reports-as-blob
-        path: blob-report
+        path: merged-reports-as-blob
 
     - name: Merge into HTML Report
       run: npx playwright merge-reports --reporter html ./merged-reports-as-blob
