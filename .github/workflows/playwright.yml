@@ -15,9 +15,9 @@ jobs:
         id: generate-timestamp
         run: echo "timestamp=(date "+%F-%H-%M-%S")" >> "$GITHUB_ENV"
 
-      - run: echo "Confirm timestamp set to - ${{ env.identifier }}"
+      - run: echo "Confirm timestamp set to - $timestamp"
     env: 
-      identifier: ${{ steps.generate-timestamp.env.timestamp }}
+      identifier: $timestamp
 
   playwright-tests:
     needs: [shared-variables]
