@@ -31,7 +31,7 @@ jobs:
       if: always()
       uses: actions/upload-artifact@v3
       with:
-        name: merged-reports-as-blob
+        name: merged-reports-as-blob-$(date '+%F-%H-%M-%S')
         path: blob-report
         retention-days: 90
 
