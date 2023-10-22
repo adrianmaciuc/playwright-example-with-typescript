@@ -12,7 +12,7 @@ jobs:
     steps:
     - name: Get current Time stamp
       id: timestamp
-      run: echo "{timestamp}={$('-%Y-%m-%d_%H:%M')}" >> $GITHUB_ENV
+      run: echo "{timestamp}={$('-%Y-%m-%d_%H:%M')}" >> $GITHUB_OUTPUT
   
   playwright-tests:
     needs: [shared-variables]
@@ -23,7 +23,7 @@ jobs:
       matrix:
         shard: [1/2, 2/2]
     steps:
-    - run : echo "${{ jobs.shared-variables.env.timestamp }}"
+    - run : echo "${{ needs.shared-variables.outputs.timestamp }}"
     - uses: actions/checkout@v3
     - uses: actions/setup-node@v3
       with:
@@ -40,7 +40,7 @@ jobs:
       if: always()
       uses: actions/upload-artifact@v3
       with:
-        name: all-blob-reports-${{ jobs.shared-variables.env.timestamp }}
+        name: all-blob-reports-${{ needs.shared-variables.outputs.timestamp }}
         path: blob-report
         retention-days: 90
 
@@ -67,8 +67,8 @@ jobs:
     - name: Download blob reports from GitHub Actions Artifacts
       uses: actions/download-artifact@v3
       with:
-        name: all-blob-reports-${{ jobs.shared-variables.env.timestamp }}
-        path: all-blob-reports-${{ jobs.shared-variables.env.timestamp }}
+        name: all-blob-reports-${{ needs.shared-variables.outputs.timestamp }}
+        path: all-blob-reports-${{ needs.shared-variables.outputs.timestamp }}
 
     - name: Merge into HTML Report
       run: npx playwright merge-reports --reporter html ./all-blob-reports-${{ jobs.shared-variables.env.timestamp }}
