@@ -15,7 +15,7 @@ jobs:
         id: generate-timestamp
         run: echo "timestamp=$(date '+%F-%H-%M-%S')" >> "$GITHUB_OUTPUT"
 
-      - run: echo "Confirm timestamp set to - $timestamp"
+      - run: echo "Confirm timestamp set to - ${{ steps.generate-timestamp.output.timestamp }}"
 
   playwright-tests:
     needs: [shared-variables]
