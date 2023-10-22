@@ -26,7 +26,7 @@ jobs:
       matrix:
         shard: [1/2, 2/2]
     steps:
-    - run : echo "${{ shared-variables.generate-timestamp.timestamp }}"
+    - run : echo "${{ needs.shared-variables.steps.generate-timestamp.timestamp }}"
     - uses: actions/checkout@v3
     - uses: actions/setup-node@v3
       with:
