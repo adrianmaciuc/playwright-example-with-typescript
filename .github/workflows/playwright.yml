@@ -12,7 +12,7 @@ jobs:
     outputs: 
       identifier: (date "+%F-%H-%M-%S")
     steps:
-    - run: echo "Confirm identifier ${{ outputs.identifier }}"
+    - run: echo "Confirm identifier ${{ needs.shared-variables.outputs.identifier }}"
 
   playwright-tests:
     needs: [shared-variables]
