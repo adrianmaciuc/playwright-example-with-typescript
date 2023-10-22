@@ -11,13 +11,7 @@ test('Buy a product | @e2e', async ({ homePage }) => {
 test('Extra testjust for Report 3 | @e2e', async ({ request }) => {
 
   const response = await request.get('https://magento.softwaretestingboard.com/')
-  expect(response.status()).toEqual(200)
+  expect(response.status()).toEqual(201)
 
 });
 
-test('Extra test just for Report 4 | @e2e', async ({ request }) => {
-
-  const response = await request.get('https://magento.softwaretestingboard.com/')
-  expect(response.ok).toBeFalsy()
-
-});

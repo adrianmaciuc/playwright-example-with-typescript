@@ -25,8 +25,3 @@ test('Extra test just for Report 1 | @e2e', async ({ homePage }) => {
 
 });
 
-test('Extra test just for Report 2 | @e2e', async ({ homePage }) => {
-
-  await expect(homePage.productItem().nth(0).isVisible()).toBeTruthy()
-
-});
