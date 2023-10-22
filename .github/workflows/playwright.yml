@@ -9,14 +9,15 @@ jobs:
 
   shared-variables:
     runs-on: ubuntu-latest
-    env: 
-      identifier: ${{ steps.generate-timestamp.env.timestamp }}
+
     steps:
       - name: generate-timestamp
         id: generate-timestamp
         run: echo "timestamp=(date "+%F-%H-%M-%S")" >> "$GITHUB_ENV"
 
       - run: echo "Confirm timestamp set to - ${{ env.identifier }}"
+    env: 
+      identifier: ${{ steps.generate-timestamp.env.timestamp }}
 
   playwright-tests:
     needs: [shared-variables]
