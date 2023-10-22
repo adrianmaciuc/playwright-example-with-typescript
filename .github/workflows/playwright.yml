@@ -37,7 +37,11 @@ jobs:
 
   merge-reports-and-publish:
   # Merge reports after playwright-tests, even if some shards have failed
-     
+    permissions:
+      contents: read
+      pages: write
+      id-token: write
+
     if: always()
     needs: [playwright-tests]
     
