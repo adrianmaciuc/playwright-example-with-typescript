@@ -11,8 +11,11 @@ jobs:
     runs-on: ubuntu-latest
     outputs: 
       identifier: ${{ github.run_id }}
+      identifier2: $(date +'%Y-%m-%d')
+      identifier3: $(date +'%Y-%m-%d_%H:%m')
     steps:
-    - run: echo "$identifier"
+    - run: echo "Confirm identifier ${{ outputs.identifier2 }}"
+    - run: echo "Confirm identifier3 ${{ outputs.identifier3 }}"
 
   playwright-tests:
     needs: [shared-variables]
