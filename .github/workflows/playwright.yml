@@ -31,8 +31,8 @@ jobs:
       if: always()
       uses: actions/upload-artifact@v3
       with:
-        name: merged-reports-as-blob
-        path: blob-report
+        name: merged-reports-as-blob # name of the file you want to have once its uploaded
+        path: blob-report # path where the reports are. Default playwright blog reports stores in 'blob-report'
         retention-days: 90
 
   merge-reports-and-publish:
@@ -57,8 +57,8 @@ jobs:
     - name: Download blob reports from GitHub Actions Artifacts
       uses: actions/download-artifact@v3
       with:
-        name: merged-reports-as-blob
-        path: merged-reports-as-blob
+        name: merged-reports-as-blob # name of the file after download
+        path: merged-reports-as-blob # path to the folder you want to download
 
     - name: Merge into HTML Report
       run: npx playwright merge-reports --reporter html ./merged-reports-as-blob
@@ -76,7 +76,7 @@ jobs:
       run: echo "${{ steps.deployment.outputs.page_url }}"
 
     - name: Write URL in summary
-      run: echo "### Test results here -> ${{ steps.deployment.outputs.page_url }}" >> $GITHUB_STEP_SUMMARY
+      run: echo "### Test results - ${{ steps.deployment.outputs.page_url }}" >> $GITHUB_STEP_SUMMARY
 
 
 
