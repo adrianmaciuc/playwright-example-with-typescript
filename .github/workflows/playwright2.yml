@@ -111,8 +111,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v3
-      with:
-        ref: gh-pages
 
     - name: Download zipped HTML report
       uses: actions/download-artifact@v2
