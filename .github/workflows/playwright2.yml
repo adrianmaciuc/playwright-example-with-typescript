@@ -100,7 +100,8 @@ jobs:
 
   publish-reports:
     permissions:
-      contents: read
+      pull-requests: write
+      contents: write
       pages: write
       id-token: write
 
