@@ -1,7 +1,7 @@
 import { test, expect } from '../fixtures/basePage'
 
 
-test.skip('Buy a product | @e2e', async ({ homePage, shippingPage, productPage }) => {
+test('Buy a product | @e2e', async ({ homePage, shippingPage, productPage }) => {
 
   await homePage.goto()
   await homePage.productItem().nth(0).click()
