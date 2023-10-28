@@ -125,8 +125,8 @@ jobs:
         github_token: ${{ secrets.GITHUB_TOKEN }}
         publish_dir: playwright-report-${{ needs.merge-reports-and-upload.outputs.timestamp }} # from what folder to take files. It takes only contents
         destination_dir: ${{ needs.merge-reports-and-upload.outputs.timestamp }} # a sub-directory where to publish 
-        # user_name: adrianmaciuc
-        # user_email: adrian.maciuc@gmail.com
+        user_name: github-actions[bot]
+        user_email: 41898282+github-actions[bot]@users.noreply.github.com
     # - name: Set Git User
     # # see: https://github.com/actions/checkout/issues/13#issuecomment-724415212
     #   run: |
