@@ -123,9 +123,10 @@ jobs:
       uses: peaceiris/actions-gh-pages@v3
       with:
         github_token: ${{ secrets.GITHUB_TOKEN }}
-        publish_dir: playwright-report-${{ needs.merge-reports-and-upload.outputs.timestamp }}
-        user_name: adrianmaciuc
-        user_email: adrian.maciuc@gmail.com
+        publish_dir: playwright-report-${{ needs.merge-reports-and-upload.outputs.timestamp }} # from what folder to take files. It takes only contents
+        destination_dir: ${{ needs.merge-reports-and-upload.outputs.timestamp }} # a sub-directory where to publish 
+        # user_name: adrianmaciuc
+        # user_email: adrian.maciuc@gmail.com
     # - name: Set Git User
     # # see: https://github.com/actions/checkout/issues/13#issuecomment-724415212
     #   run: |
