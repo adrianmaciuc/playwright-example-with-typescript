@@ -119,26 +119,33 @@ jobs:
         name: playwright-report-${{ needs.merge-reports-and-upload.outputs.timestamp }} # name of the file stored as artifact (omitting this param will download all artifacts)
         path: playwright-report-${{ needs.merge-reports-and-upload.outputs.timestamp }} # name of the folder where the download will be saved
 
-    - name: Set Git User
-    # see: https://github.com/actions/checkout/issues/13#issuecomment-724415212
-      run: |
-        git config --global user.name "Adrian Maciuc"
-        git config --global user.email "adrian.maciuc@gmail.com"
-    
-    - name: Show me the files
-      run: |
-       ls -R
-        
     - name: Push the new files to github pages
-      run: |
-        git add .
-        git commit -m "report for run-id ${{ github.run_id }} and report id ${{ needs.merge-reports-and-upload.outputs.timestamp }}"
-        git pull --rebase
-        git push
-        if [ $? -eq 0 ]; then
-        echo "Successfully pushed HTML report to repo."
-        exit 0
-        fi
+      uses: peaceiris/actions-gh-pages@v3
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        publish_dir: playwright-report-${{ needs.merge-reports-and-upload.outputs.timestamp }}
+        user_name: adrianmaciuc
+        user_email: adrian.maciuc@gmail.com
+    # - name: Set Git User
+    # # see: https://github.com/actions/checkout/issues/13#issuecomment-724415212
+    #   run: |
+    #     git config --global user.name "Adrian Maciuc"
+    #     git config --global user.email "adrian.maciuc@gmail.com"
+    
+    # - name: Show me the files
+    #   run: |
+    #    ls -R
+        
+    # - name: Push the new files to github pages
+    #   run: |
+    #     git add .
+    #     git commit -m "report for id ${{ needs.merge-reports-and-upload.outputs.timestamp }}"
+    #     git pull --rebase
+    #     git push
+    #     if [ $? -eq 0 ]; then
+    #     echo "Successfully pushed HTML report to repo."
+    #     exit 0
+    #     fi
         
     - name: Write URL in summary
       run: echo "### Test results - https://${{ github.repository_owner }}.github.io/playwright-example-with-typescript/playwright-report-${{ needs.merge-reports-and-upload.outputs.timestamp }}" >> $GITHUB_STEP_SUMMARY
