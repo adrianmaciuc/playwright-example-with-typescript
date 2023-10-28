@@ -129,3 +129,16 @@ jobs:
       run: |
        ls -R
         
+    - name: Push the new files to github pages
+      run: |
+        git add .
+        git commit -m "report for run-id ${{ github.run_id }} and report id ${{ needs.merge-reports-and-upload.outputs.timestamp }}"
+        git pull --rebase
+        git push
+        if [ $? -eq 0 ]; then
+        echo "Successfully pushed HTML report to repo."
+        exit 0
+        fi
+        
+    - name: Write URL in summary
+      run: echo "### Test results - https://${{ github.repository_owner }}.github.io/playwright-example-with-typescript/playwright-report-${{ needs.merge-reports-and-upload.outputs.timestamp }}" >> $GITHUB_STEP_SUMMARY
