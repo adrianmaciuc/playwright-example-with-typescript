@@ -70,10 +70,11 @@ jobs:
       uses: actions/download-artifact@v3
       with:
         name: merged-reports-as-blob # name of the file stored as artifact (as uploaded at the previous job)
-        path: merged-reports-as-blob # name of the folder where the download will be saved
+        path: downloaded-merged-reports-as-blob # name of the folder where the download will be saved
 
+    # Playwright will generate a report and store it inside a folder called '/playwright-report'
     - name: Merge the blobs into one single HTML Report
-      run: npx playwright merge-reports --reporter html ./merged-reports-as-blob
+      run: npx playwright merge-reports --reporter html ./downloaded-merged-reports-as-blob
 
     - name: /[OPTIONAL] Upload full html report to artifacts for history
       if: always()
@@ -84,6 +85,8 @@ jobs:
         retention-days: 90
 
     - name: Push the new files to github pages
+    # This will create a separate branch called gh-pages where it will store only reports. And from where it will push all future changes 
+    # to github pages. Having a separate branch will keep the reports and changes commits separate to your main/master
       uses: peaceiris/actions-gh-pages@v3
       with:
         github_token: ${{ secrets.GITHUB_TOKEN }}
