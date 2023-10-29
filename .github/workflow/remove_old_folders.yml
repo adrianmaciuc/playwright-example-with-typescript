@@ -1,4 +1,4 @@
-name: Delete Old Folders
+name: Delete Old Folders from github pages
 
 on:
   workflow_dispatch:
