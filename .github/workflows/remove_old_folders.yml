@@ -8,9 +8,9 @@ on:
             required: true
             default: 10
         folder_name:
-            description: 'Name of the folder where you store the reports'
+            description: 'Name of the folder where you store the reports. Default is root'
             required: true
-            default: 'reports'
+            default: '.'
 
 jobs:
   delete_old_folders:
