@@ -12,7 +12,7 @@ on:
             required: true
             default: 'reports'
         branch:
-            description: 'Remember to always change from main to gh-pages'
+            description: 'Chose github pages below BUT ALSO change Use Workflow from Branch: main -> gh-pages'
             type: environment
 
 jobs:
