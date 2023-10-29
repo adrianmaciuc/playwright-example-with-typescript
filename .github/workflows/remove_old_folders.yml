@@ -8,9 +8,13 @@ on:
             required: true
             default: 10
         folder_name:
-            description: 'Full path to the directory where reports are located'
+            description: 'Name of the folder where you store the reports'
             required: true
             default: 'reports'
+        ref:
+            description: 'Git branch to use (default: gh-pages)'
+            required: false
+            default: 'gh-pages'
 
 jobs:
   delete_old_folders:
