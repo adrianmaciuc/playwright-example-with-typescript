@@ -8,12 +8,9 @@ on:
             required: true
             default: 10
         folder_name:
-            description: 'Name of the folder where you store the reports'
+            description: 'Name of the folder where you store the reports. Default is root'
             required: true
-            default: 'reports'
-        branch:
-            description: 'Chose github pages below BUT ALSO change Use Workflow from Branch: main -> gh-pages'
-            type: environment
+            default: '.'
 
 jobs:
   delete_old_folders:
@@ -30,11 +27,7 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@v4
         with:
-          python-version: 3.10
-
-      # - name: Download the script
-      #   run: |
-      #     curl -LJO https://raw.githubusercontent.com/adrianmaciuc/rm_old_folders/main/rm_old_folders.py
+          python-version: 3.9
 
       - name: Pray then Run the script
         run: python rm_old_folders.py --n-days ${{ github.event.inputs.n_days }} --folder-name ${{ github.event.inputs.folder_name }}
@@ -43,3 +36,4 @@ jobs:
         uses: stefanzweifel/git-auto-commit-action@v5
         with:
           branch: gh-pages
+          commit_message: Delete folders older than ${{ github.event.inputs.n_days }} days
