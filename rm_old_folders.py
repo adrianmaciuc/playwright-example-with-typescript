@@ -4,7 +4,7 @@ import re
 from datetime import datetime, timedelta
 import shutil
 
-def find_old_folders(directory, n_days):
+def find_old_folders(n_days, directory):
     """
     Find folders in the specified directory that are older than n_days.
     
@@ -27,11 +27,11 @@ def find_old_folders(directory, n_days):
                 if time_difference > timedelta(days=n_days):
                     old_folders.append(entry.name)
                 else:
-                    print(f"Folder '{entry.name}' is skipped.")
+                    print(f"SKIPPED --- Folder '{entry.name}' is not older than {n_days}. It will not be deleted")
             except ValueError:
-                print(f"Error parsing timestamp for folder '{entry.name}'. It will be skipped.")
+                print(f"SKIPPED --- Error parsing timestamp for folder '{entry.name}'. It will not be deleted.")
         else:
-            print(f"Found folder with name '{entry.name}' that does not match the expected timestamp format. It will be skipped.")
+            print(f"SKIPPED --- Found folder/file with name '{entry.name}' that does not match the expected timestamp format. It will not be deleted.")
 
     return old_folders
 
@@ -47,7 +47,7 @@ def delete_folders(directory, folder_names):
         folder_path = os.path.join(directory, folder_name)
         try:
             shutil.rmtree(folder_path)
-            print(f"Folder '{folder_name}' and its contents have been deleted.")
+            print(f"DELETED --- Folder '{folder_name}' and its contents have been deleted.")
         except FileNotFoundError:
             print(f"Folder '{folder_name}' not found.")
         except Exception as e:
@@ -59,8 +59,5 @@ if __name__ == "__main__":
     parser.add_argument("--folder-name", type=str, required=True, help="Full path to the directory where reports are located.")
     args = parser.parse_args()
 
-    # Configuration parameters
-    reports_directory = args.folder_name
-
-    old_folders = find_old_folders(reports_directory, args.n_days)
-    delete_folders(reports_directory, old_folders)
+    old_folders = find_old_folders(args.n_days, args.folder_name)
+    delete_folders(args.folder_name, old_folders)
