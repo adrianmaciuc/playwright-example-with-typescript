@@ -29,10 +29,6 @@ jobs:
         with:
           python-version: 3.9
 
-      # - name: Download the script
-      #   run: |
-      #     curl -LJO https://raw.githubusercontent.com/adrianmaciuc/rm_old_folders/main/rm_old_folders.py
-
       - name: Pray then Run the script
         run: python rm_old_folders.py --n-days ${{ github.event.inputs.n_days }} --folder-name ${{ github.event.inputs.folder_name }}
 
