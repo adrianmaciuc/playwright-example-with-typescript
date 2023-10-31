@@ -1,8 +1,5 @@
 import { defineConfig, devices } from '@playwright/test';
 
-
-require('dotenv').config();
-
 export default defineConfig({
   testDir: './tests',
   fullyParallel: true,
