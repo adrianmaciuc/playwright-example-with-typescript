@@ -1,10 +1,14 @@
-name: Playwright Tests
+name: Playwright-Tests
 on:
+  workflow_dispatch:
   push:
     branches: [main]
 jobs:
-  Run-tests:
-    timeout-minutes: 5
+
+  setup-and-run-tests:
+    # setup and run the tests in parallel machines, with each machine uploading its own results to artifacts
+    # artifacts are shared among jobs and machines
+    timeout-minutes: 15
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
