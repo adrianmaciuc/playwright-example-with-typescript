@@ -1,4 +1,4 @@
-name: Playwright-Tests
+run-name: Playwright-Tests run ${{ github.run_number }}
 on:
   workflow_dispatch:
   push:
@@ -50,4 +50,4 @@ jobs:
 
       - name: Write URL in summary
         if: always()
-        run: echo "### Published Test results - https://${{ github.repository_owner }}.github.io/playwright-example-with-typescript/${{ github.run_number }}/" >> $GITHUB_STEP_SUMMARY
+        run: echo "### (takes up to 30 seconds to publish) Published Test results \n https://${{ github.repository_owner }}.github.io/playwright-example-with-typescript/${{ github.run_number }}/" >> $GITHUB_STEP_SUMMARY
