@@ -4,7 +4,7 @@ export default defineConfig({
   testDir: "./tests",
   /* Run tests in files in parallel */
   fullyParallel: true,
-  // Fail the build on CI if you accidentally left test.only in the source code. 
+  // Fail the build on CI if you accidentally left test.only in the source code.
   forbidOnly: !!process.env.CI,
   retries: process.env.CI ? 1 : 1,
   /* Opt out of parallel tests on CI. */
@@ -18,7 +18,7 @@ export default defineConfig({
     // baseURL: 'http://127.0.0.1:3000',
 
     /* Collect trace on failure. See https://playwright.dev/docs/trace-viewer */
-    trace: "on",
+    trace: "retain-on-failure",
   },
 
   projects: [
@@ -27,5 +27,4 @@ export default defineConfig({
       use: { ...devices["Desktop Chrome"] },
     },
   ],
-
 });
