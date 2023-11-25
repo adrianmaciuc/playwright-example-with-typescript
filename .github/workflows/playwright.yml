@@ -16,12 +16,12 @@ jobs:
       - name: Install Dependencies
         run: npm install
       - name: Install Playwright Browsers
-        run: npx playwright install --with-deps
+        run: npx playwright install
 
       - name: Run Playwright tests
         run: npx playwright test
 
-      - name: Get Allure history
+      - name: Switch to gh-pages branch to deal with reports
         uses: actions/checkout@v3
         if: always()
         continue-on-error: true
@@ -40,7 +40,7 @@ jobs:
           allure_history: allure-history
           keep_reports: 3
 
-      - name: Deploy Report to Github Pages
+      - name: Deploy Report to Github Pages using gh-pages branch
         if: always()
         uses: peaceiris/actions-gh-pages@v3
         with:
@@ -49,4 +49,5 @@ jobs:
           PUBLISH_DIR: allure-history
 
       - name: Write URL in summary
+        if: always()
         run: echo "### Published Test results - https://${{ github.repository_owner }}.github.io/playwright-example-with-typescript/${{ github.run_number }}/" >> $GITHUB_STEP_SUMMARY
