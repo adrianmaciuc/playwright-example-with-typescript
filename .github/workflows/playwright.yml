@@ -31,6 +31,7 @@ jobs:
           ref: gh-pages
           path: gh-pages
 
+      # This will fetch the history only, as json. Not the screenshots or traces from previous runs
       - name: Allure history fetch from gh-pages, mix and generate new report
         uses: simple-elf/allure-report-action@master
         if: always()
@@ -48,6 +49,16 @@ jobs:
           PERSONAL_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           PUBLISH_BRANCH: gh-pages
           PUBLISH_DIR: allure-history
+
+      - name: Post the link to the report
+        if: always()
+        uses: Sibz/github-status-action@v1
+        with:
+          authToken: ${{secrets.GITHUB_TOKEN}}
+          context: "Test report"
+          state: "success"
+          sha: ${{ github.event.pull_request.head.sha }}
+          target_url: https://${{ github.repository_owner }}.github.io/playwright-example-with-typescript/${{ github.run_number }}/
 
       - name: Write publish message in summary
         if: always()
