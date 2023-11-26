@@ -31,7 +31,7 @@ jobs:
           ref: gh-pages
           path: gh-pages
 
-      # This will fetch the history only, as json. Not the screenshots or traces from previous runs
+      # This will fetch ALL the history as json. But keep the screenshots/traces from previous runs only for the past keep_reports nr
       - name: Allure history fetch from gh-pages, mix and generate new report
         uses: simple-elf/allure-report-action@master
         if: always()
@@ -40,7 +40,7 @@ jobs:
           gh_pages: gh-pages
           allure_report: allure-report
           allure_history: allure-history
-          keep_reports: 200 # this is number of reports to keep (not days)
+          keep_reports: 5 # this is number of reports to keep (not days)
 
       - name: Deploy Report to Github Pages using gh-pages branch
         if: always()
@@ -63,4 +63,4 @@ jobs:
 
       - name: Write publish message in summary
         if: always()
-        run: echo "### Takes up to 20 seconds to publish the results - https://${{ github.repository_owner }}.github.io/playwright-example-with-typescript/${{ github.run_number }}/" >> $GITHUB_STEP_SUMMARY
+        run: echo "### REPORT LINK - Takes up to 20 seconds to publish the results - https://${{ github.repository_owner }}.github.io/playwright-example-with-typescript/${{ github.run_number }}/" >> $GITHUB_STEP_SUMMARY
