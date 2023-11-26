@@ -1,7 +1,0 @@
-"Status","Start Time","Stop Time","Duration in ms","Parent Suite","Suite","Sub Suite","Test Class","Test Method","Name","Description"
-"failed","Sat Nov 25 23:02:00 GMT 2023","Sat Nov 25 23:02:01 GMT 2023","1804","Chrome desktop web","Accounts suite","","","","Extra test TO FAIL just for Report 1 | @e2e",""
-"failed","Sat Nov 25 23:01:54 GMT 2023","Sat Nov 25 23:01:57 GMT 2023","3195","Chrome desktop web","Accounts suite","","","","Buy a product | @e2e",""
-"passed","Sat Nov 25 23:02:02 GMT 2023","Sat Nov 25 23:02:03 GMT 2023","1096","Chrome desktop web","Smoke suite","","","","Test just to pass | @e2e",""
-"failed","Sat Nov 25 23:02:04 GMT 2023","Sat Nov 25 23:02:05 GMT 2023","701","Chrome desktop web","Smoke suite","","","","Extra test TO FAIL just for Report 3 | @e2e",""
-"failed","Sat Nov 25 23:02:06 GMT 2023","Sat Nov 25 23:02:07 GMT 2023","520","Chrome desktop web","Smoke suite","","","","Extra test TO FAIL just for Report 4 | @e2e",""
-"passed","Sat Nov 25 23:02:02 GMT 2023","Sat Nov 25 23:02:02 GMT 2023","364","Chrome desktop web","Accounts suite","","","","Extra test just for Report 2 | @e2e",""
