@@ -48,15 +48,16 @@ jobs:
       #     path: ./playwright-report # path where the reports are, from where to take the files.
       #     retention-days: 30
 
-      - name: Push the playwright html report files to github pages
-            # This will create a separate branch called gh-pages where it will store only reports. And from where it will push all future changes
-            # to github pages. Having a separate branch will keep the reports and changes commits separate to your main/master
-          uses: peaceiris/actions-gh-pages@v3
-          with:
-            github_token: ${{ secrets.GITHUB_TOKEN }}
-            keep_files: true # Set this to true to make sure we don't wipe out the other content in GitHub Pages
-            publish_dir: ./playwright-report # from what folder to take files. It takes only contents
-            destination_dir: ${{ env.timestamp }} 
+      - name:
+          Push the playwright html report files to github pages
+          # This will create a separate branch called gh-pages where it will store only reports. And from where it will push all future changes
+          # to github pages. Having a separate branch will keep the reports and changes commits separate to your main/master
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          keep_files: true # Set this to true to make sure we don't wipe out the other content in GitHub Pages
+          publish_dir: ./playwright-report # from what folder to take files. It takes only contents
+          destination_dir: ${{ env.timestamp }}
 
       - name: Switch to gh-pages branch to deal with Allure reports history
         uses: actions/checkout@v3
@@ -78,9 +79,9 @@ jobs:
         uses: peaceiris/actions-gh-pages@v3
         with:
           keep_files: true # Set this to true to make sure we don't wipe out the other content in GitHub Pages
-          PERSONAL_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          PUBLISH_BRANCH: gh-pages
-          PUBLISH_DIR: allure-history
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_branch: gh-pages
+          publish_dir: allure-history
 
       - name: Write publish message in summary
         run: |
