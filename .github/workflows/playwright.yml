@@ -11,12 +11,17 @@ env:
 jobs:
   setup:
     runs-on: ubuntu-latest
+    outputs:
+      timestamp: ${{ steps.timestampid.outputs.timestamp}}
     steps:
       # We want a unique identifier to be used when we create subdirectories for our github pages with reports
       - name: Set a timestamp
         id: timestampid
         # this will store current time with UTC in env.timestamp (eg of value: 20231028_233147Z) available for all jobs
-        run: echo "timestamp=$(date --utc +%Y%m%d_%H%M%SZ)" >> "$GITHUB_ENV"
+        run: |
+          echo "timestamp=$(date --utc +%Y%m%d_%H%M%SZ)" >> "$GITHUB_OUTPUT"
+          echo "timestamp=$(date --utc +%Y%m%d_%H%M%SZ)" >> "$GITHUB_ENV"
+          echo "timestamp set to: $timestamp"
 
   run-tests-upload-artifacts:
     # artifacts are shared among jobs and machines
@@ -57,7 +62,7 @@ jobs:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           keep_files: true # Set this to true to make sure we don't wipe out the other content in GitHub Pages
           publish_dir: ./playwright-report # from what folder to take files. It takes only contents
-          destination_dir: ${{ env.timestamp }}
+          destination_dir: ${{ needs.setup.outputs.timestamp }}
 
       - name: Switch to gh-pages branch to deal with Allure reports history
         uses: actions/checkout@v3
@@ -85,5 +90,5 @@ jobs:
 
       - name: Write publish message in summary
         run: |
-          echo "### HTML Test results - https://${{ github.repository_owner }}.github.io/playwright-example-with-typescript/${{ env.timestamp }}/" >> $GITHUB_STEP_SUMMARY
+          echo "### HTML Test results - https://${{ github.repository_owner }}.github.io/playwright-example-with-typescript/${{ needs.setup.outputs.timestamp }}/" >> $GITHUB_STEP_SUMMARY
           echo "### Allure Test results - https://${{ github.repository_owner }}.github.io/playwright-example-with-typescript/${{ github.run_number }}/" >> $GITHUB_STEP_SUMMARY
