@@ -3,9 +3,7 @@ run-name: Playwright-Tests run ${{ github.run_number }}
 on:
   workflow_dispatch:
   push:
-    branches: [main]
-  pull_request:
-    branches: [main]
+    branches: [allure-reporter]
 
 jobs:
   setup-and-run-tests:
