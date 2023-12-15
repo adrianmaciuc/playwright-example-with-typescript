@@ -18,7 +18,7 @@ jobs:
         run: |
           echo "timestamp=$(date --utc +%Y%m%d_%H%M%SZ)" >> "$GITHUB_OUTPUT"
           echo "timestamp=$(date --utc +%Y%m%d_%H%M%SZ)" >> "$GITHUB_ENV"
-          echo "timestamp set to: $timestamp"
+          echo $timestamp
 
   run-tests-upload-artifacts:
     # artifacts are shared among jobs and machines
