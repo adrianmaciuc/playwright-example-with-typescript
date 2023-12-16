@@ -17,10 +17,9 @@ jobs:
         # this will store current time with UTC in env.timestamp (eg of value: 20231028_233147Z) available for all jobs
         run: |
           echo "timestamp=$(date --utc +%Y%m%d_%H%M%SZ)" >> "$GITHUB_OUTPUT"
-          echo "timestamp=$(date --utc +%Y%m%d_%H%M%SZ)" >> "$GITHUB_ENV"
-          echo $timestamp
+          echo $(date --utc +%Y%m%d_%H%M%SZ)
 
-  run-tests-upload-artifacts:
+  run-tests-and-upload-artifacts:
     # artifacts are shared among jobs and machines
     needs: [setup]
     runs-on: ubuntu-latest
