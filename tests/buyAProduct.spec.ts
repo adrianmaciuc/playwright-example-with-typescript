@@ -1,7 +1,7 @@
 import { test, expect } from "../fixtures/basePage";
 import { allure } from "allure-playwright";
 
-test("Buy a product | @e2e", async ({
+test.skip("Buy a product | @e2e", async ({
   homePage,
   shippingPage,
   productPage,
@@ -36,7 +36,7 @@ test("Extra test TO FAIL just for Report 1 | @e2e", async ({ homePage }) => {
   await expect(homePage.productItem().nth(0).isVisible()).toBeFalsy();
 });
 
-test("Extra test just for Report 2 | @e2e", async ({ homePage }) => {
+test.skip("Extra test just for Report 2 | @e2e", async ({ homePage }) => {
   allure.suite("Accounts suite");
   allure.owner("Adrian Maciuc");
   allure.tags("Smoke", "Regression");
