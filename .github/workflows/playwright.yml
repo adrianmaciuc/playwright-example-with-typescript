@@ -62,35 +62,35 @@ jobs:
           publish_dir: ./playwright-report # from what folder to take files. It takes only contents
           destination_dir: ${{ needs.setup.outputs.timestamp }}
 
-      # - name: Switch to gh-pages branch to deal with Allure reports history
-      #   if: always()
-      #   uses: actions/checkout@v3
-      #   with:
-      #     ref: gh-pages
-      #     path: gh-pages
+      - name: Switch to gh-pages branch to deal with Allure reports history
+        if: always()
+        uses: actions/checkout@v3
+        with:
+          ref: gh-pages
+          path: gh-pages
 
-      #   # This will fetch ALL the history as json. But keep the screenshots/traces from previous runs only for the past keep_reports nr
-      # - name: Allure history fetch from gh-pages, mix and generate new report
-      #   if: always()
-      #   uses: simple-elf/allure-report-action@master
-      #   with:
-      #     allure_results: allure-results
-      #     gh_pages: gh-pages
-      #     allure_report: allure-report
-      #     allure_history: allure-history
-      #     keep_reports: 5 # this is number of reports to keep (not days)
+        # This will fetch ALL the history as json. But keep the screenshots/traces from previous runs only for the past keep_reports nr
+      - name: Allure history fetch from gh-pages, mix and generate new report
+        if: always()
+        uses: simple-elf/allure-report-action@master
+        with:
+          allure_results: allure-results
+          gh_pages: gh-pages
+          allure_report: allure-report
+          allure_history: allure-history
+          keep_reports: 5 # this is number of reports to keep (not days)
 
-      # - name: Deploy Allure Report to Github Pages using gh-pages branch
-      #   if: always()
-      #   uses: peaceiris/actions-gh-pages@v3
-      #   with:
-      #     keep_files: true # Set this to true to make sure we don't wipe out the other content in GitHub Pages
-      #     github_token: ${{ secrets.GITHUB_TOKEN }}
-      #     publish_branch: gh-pages
-      #     publish_dir: allure-history
+      - name: Deploy Allure Report to Github Pages using gh-pages branch
+        if: always()
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          keep_files: true # Set this to true to make sure we don't wipe out the other content in GitHub Pages
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_branch: gh-pages
+          publish_dir: allure-history
 
-      # - name: Write publish message in summary
-      #   if: always()
-      #   run: |
-      #     echo "### HTML Test results - https://${{ github.repository_owner }}.github.io/playwright-example-with-typescript/${{ needs.setup.outputs.timestamp }}/" >> $GITHUB_STEP_SUMMARY
-      #     echo "### Allure Test results - https://${{ github.repository_owner }}.github.io/playwright-example-with-typescript/${{ github.run_number }}/" >> $GITHUB_STEP_SUMMARY
+      - name: Write publish message in summary
+        if: always()
+        run: |
+          echo "### HTML Test results - https://${{ github.repository_owner }}.github.io/playwright-example-with-typescript/${{ needs.setup.outputs.timestamp }}/" >> $GITHUB_STEP_SUMMARY
+          echo "### Allure Test results - https://${{ github.repository_owner }}.github.io/playwright-example-with-typescript/${{ github.run_number }}/" >> $GITHUB_STEP_SUMMARY
