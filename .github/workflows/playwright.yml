@@ -38,7 +38,6 @@ jobs:
         run: npx playwright install --with-deps
 
       - name: Run Playwright tests
-        continue-on-error: true
         run: npx playwright test
 
       # Once playwright finishes it will create a folder called 'playwright-report' where it will put all the reports
@@ -53,6 +52,7 @@ jobs:
           Push the playwright html report files to github pages
           # This will create a separate branch called gh-pages where it will store only reports. And from where it will push all future changes
           # to github pages. Having a separate branch will keep the reports and changes commits separate to your main/master
+        if: always()
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
@@ -61,6 +61,7 @@ jobs:
           destination_dir: ${{ needs.setup.outputs.timestamp }}
 
       - name: Switch to gh-pages branch to deal with Allure reports history
+        if: always()
         uses: actions/checkout@v3
         with:
           ref: gh-pages
@@ -68,6 +69,7 @@ jobs:
 
         # This will fetch ALL the history as json. But keep the screenshots/traces from previous runs only for the past keep_reports nr
       - name: Allure history fetch from gh-pages, mix and generate new report
+        if: always()
         uses: simple-elf/allure-report-action@master
         with:
           allure_results: allure-results
@@ -77,6 +79,7 @@ jobs:
           keep_reports: 10 # this is number of reports to keep (not days)
 
       - name: Deploy Allure Report to Github Pages using gh-pages branch
+        if: always()
         uses: peaceiris/actions-gh-pages@v3
         with:
           keep_files: true # Set this to true to make sure we don't wipe out the other content in GitHub Pages
