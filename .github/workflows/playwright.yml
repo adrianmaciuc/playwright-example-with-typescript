@@ -76,7 +76,7 @@ jobs:
           gh_pages: gh-pages
           allure_report: allure-report
           allure_history: allure-history
-          keep_reports: 10 # this is number of reports to keep (not days)
+          keep_reports: 5 # this is number of reports to keep (not days)
 
       - name: Deploy Allure Report to Github Pages using gh-pages branch
         if: always()
@@ -88,6 +88,7 @@ jobs:
           publish_dir: allure-history
 
       - name: Write publish message in summary
+        if: always()
         run: |
           echo "### HTML Test results - https://${{ github.repository_owner }}.github.io/playwright-example-with-typescript/${{ needs.setup.outputs.timestamp }}/" >> $GITHUB_STEP_SUMMARY
           echo "### Allure Test results - https://${{ github.repository_owner }}.github.io/playwright-example-with-typescript/${{ github.run_number }}/" >> $GITHUB_STEP_SUMMARY
