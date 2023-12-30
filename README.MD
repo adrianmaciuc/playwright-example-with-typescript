@@ -1,7 +1,7 @@
 # Playwright Framework with Typescript
 
 - It will run E2E tests 
-- Trigger Github Action workflow to run in full parallelisation using --shard
+- Trigger Github Action workflow to run in full parallelisation using sharding 
 - Generate html reports
 - Publish the reports on github pages
 - It includes workflow and script to manually trigger cleanup of old reports (can be customized for cron job)
@@ -38,5 +38,3 @@ Equivalent to the above for linux you can do:
 export PLAYWRIGHT_BROWSERS_PATH=$(realpath "$(dirname "$0")/pw-browsers")
 ```
 Then perform a `npx playwright install` to install the binaries in the same folder as you run the script
-
-
